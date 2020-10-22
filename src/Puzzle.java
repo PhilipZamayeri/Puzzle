@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.lang.reflect.Array;
 
 /**
@@ -12,7 +14,6 @@ import java.lang.reflect.Array;
 public class Puzzle {
     JButton reset;
     JButton cheat;
-    //String test = "Robin lägger till branch";
     JButton[][] buttons = new JButton[4][4];
 
     private void gameDemo(){
@@ -36,27 +37,14 @@ public class Puzzle {
         int Num = 1;
         int count = 1;
 
-        /*for (int row = 0; row < 4; row++) {
-            for (int col = 0; col < 4; col++) {
-                if (Num == 16) {
-                    break;
-                }
-                else {
-                    //board.add(new JButton(String.valueOf(+Num))).setFont(fn);
-                }
-                Num++;
-            }
-        }*/
-
         for (int i =0; i < buttons.length; i ++)
             for (int j = 0; j < buttons[i].length; j++){
                 buttons[i][j] = new JButton("" + count++);
                 board.add(buttons[i][j]).setForeground(Color.black);
-                board.add(buttons[i][j]).setFont(fn);
+                buttons[i][j].setFont(fn);
+                //buttons[i]
         }
 
-        //JButton buttonEmpty = new JButton();
-          //  buttonPanel.add(buttonEmpty);
         buttons[3][3].setBackground(null);
         buttons[3][3].setFont(null);
         buttons[3][3].setText(null);
@@ -69,6 +57,14 @@ public class Puzzle {
         frame.setLocation(600, 90);
         frame.setVisible(true);
     }
+
+    MouseAdapter ma = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
+        }
+    };
+
 
     public static void main(String[] args) {
         Puzzle puzzle = new Puzzle();
