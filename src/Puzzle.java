@@ -11,6 +11,7 @@ import java.awt.*;
 public class Puzzle {
     JButton reset;
     JButton cheat;
+    String test = "Robin lägger till branch";
 
     private void gameDemo(){
         JFrame frame = new JFrame("Puzzle");
