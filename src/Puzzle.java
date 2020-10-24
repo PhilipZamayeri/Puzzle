@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -12,10 +14,16 @@ import java.util.Random;
  * Copyright: MIT
  */
 public class Puzzle{
+    JFrame frame = new JFrame("Puzzle");
+    JPanel board = new JPanel();
+    JPanel buttonPanel = new JPanel();
+    JPanel panel  = new JPanel();
+    Font fn = new Font("Tahoma", Font.BOLD, 60);
 
     JButton newGame;
     JButton cheat;
-    JButton[][] button = new JButton[4][4];
+    List<JButton> buttons = new ArrayList<>();
+    //JButton[][] button = new JButton[4][4];
     public static final Color buttonColor = new Color(0,51,102);
 
 
@@ -34,7 +42,7 @@ public class Puzzle{
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
             MethodClass test = new MethodClass();
-            test.shuffleMetod(button);
+            test.shuffle(buttons, board);
 
         }
     };
@@ -60,12 +68,6 @@ public class Puzzle{
         }
 
 
-        JFrame frame = new JFrame("Puzzle");
-        JPanel board = new JPanel();
-        JPanel buttonPanel = new JPanel();
-        JPanel panel  = new JPanel();
-        Font fn = new Font("Tahoma", Font.BOLD, 60);
-
 
         newGame = new JButton("Nytt spel");
         cheat = new JButton("Cheat");
@@ -82,18 +84,17 @@ public class Puzzle{
         int counter = 1;
 
         board.setLayout(new GridLayout(4, 4));
-        for (int i = 0; i < button.length; i++)
-            for (int j = 0; j < button[i].length; j++){
-                button[i][j] = new JButton("" + counter++);
-                board.add(button[i][j]).setForeground(Color.white);
-                button[i][j].setName("b" + (counter-1));
-                button[i][j].setFont(fn);
-                button[i][j].setBackground(buttonColor);
-                button[i][j].addMouseListener(mouseAdapter);
+        for (int i = 0; i < 16; i++) {
+                buttons.add(new JButton("" + counter++));
+                board.add(buttons.get(i)).setForeground(Color.white);
+                buttons.get(i).setName("b" + counter);
+                buttons.get(i).setFont(fn);
+                buttons.get(i).setBackground(buttonColor);
+                buttons.get(i).addMouseListener(mouseAdapter);
             }
-        button[3][3].setBackground(buttonColor);
-        button[3][3].setOpaque(true);
-        button[3][3].setText(null);
+        buttons.get(15).setBackground(buttonColor);
+        buttons.get(15).setOpaque(true);
+        buttons.get(15).setText(null);
 
 
         frame.add(panel);
@@ -108,10 +109,6 @@ public class Puzzle{
     public static void main(String[] args) {
         Puzzle puzzle = new Puzzle();
         puzzle.gameDemo();
-
-    }
-    public static void main(String[] args) {
-
 
     }
 
