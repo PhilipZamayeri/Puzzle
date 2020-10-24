@@ -13,18 +13,12 @@ import java.util.Random;
  * Copyright: MIT
  */
 public class MethodClass {
-    String namn;
-    JButton b;
-    public void shuffle(List<JButton> buttons, JPanel board){
 
-
-
-
+    public void shuffle(List<JButton> buttons){
         Collections.shuffle(buttons);
 
-        for (var button : buttons){
-            board.add(button);
-        }
+
+
 
     }
     public void shuffleMetod(JButton[][] button) {

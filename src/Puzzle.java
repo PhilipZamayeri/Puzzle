@@ -4,7 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Philip Zamayeri
@@ -27,22 +26,22 @@ public class Puzzle{
     public static final Color buttonColor = new Color(0,51,102);
 
 
-    MouseAdapter mouseAdapter = new MouseAdapter() {
+    MouseAdapter buttonListener = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-            MethodClass test = new MethodClass();
+            MethodClass obj = new MethodClass();
 
 
         }
     };
 
-    MouseAdapter mouseAdapter2 = new MouseAdapter() {
+    MouseAdapter newGameListener = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-            MethodClass test = new MethodClass();
-            test.shuffle(buttons, board);
+            MethodClass obj = new MethodClass();
+            obj.shuffle(buttons);
 
         }
     };
@@ -71,7 +70,7 @@ public class Puzzle{
 
         newGame = new JButton("Nytt spel");
         cheat = new JButton("Cheat");
-        newGame.addMouseListener(mouseAdapter2);
+        newGame.addMouseListener(newGameListener);
         cheat.addMouseListener(mouseAdapter3);
 
         panel.setLayout(new BorderLayout());
@@ -90,7 +89,7 @@ public class Puzzle{
                 buttons.get(i).setName("b" + counter);
                 buttons.get(i).setFont(fn);
                 buttons.get(i).setBackground(buttonColor);
-                buttons.get(i).addMouseListener(mouseAdapter);
+                buttons.get(i).addMouseListener(buttonListener);
             }
         buttons.get(15).setBackground(buttonColor);
         buttons.get(15).setOpaque(true);
