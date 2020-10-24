@@ -14,26 +14,15 @@ import java.util.Random;
  */
 public class MethodClass {
 
-    public void shuffle(List<JButton> buttons){
+    public void shuffle(List<JButton> buttons, JPanel board){
+        board.removeAll();
         Collections.shuffle(buttons);
-
-
-
-
-    }
-    public void shuffleMetod(JButton[][] button) {
-        Random random = new Random();
-
-        for (int i = button.length - 1; i > 0; i--) {
-            for (int j = button[i].length - 1; j > 0; j--) {
-                int m = random.nextInt(i + 1);
-                int n = random.nextInt(j + 1);
-
-                String temp = button[i][j].getText();
-                button[i][j].setText(button[m][n].getText());
-                button[m][n].setText(temp);
-
-            }
+        for (JButton button : buttons){
+            board.add(button);
         }
+        board.revalidate();
+        board.repaint();
+
     }
+
 }

@@ -41,7 +41,7 @@ public class Puzzle{
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
             MethodClass obj = new MethodClass();
-            obj.shuffle(buttons);
+            obj.shuffle(buttons, board);
 
         }
     };
