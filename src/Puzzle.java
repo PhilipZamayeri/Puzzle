@@ -15,10 +15,12 @@ import java.util.List;
  * Copyright: MIT
  */
 public class Puzzle extends JFrame{
+    public static final Color buttonColor = new Color(-125);
     JButton newGame;
     JButton cheat;
     List<JButton> buttons = new ArrayList<>();
     List<JButton> correctOrder;
+    List<JButton> winOrder;
 
     JFrame frame = new JFrame("Puzzle");
     JPanel board = new JPanel();
@@ -45,7 +47,8 @@ public class Puzzle extends JFrame{
 
         for (int i = 0; i < 16; i++) {
             buttons.add(new JButton("" + counter++));
-            board.add(buttons.get(i)).setForeground(Color.white);
+            board.add(buttons.get(i)).setForeground(Color.BLACK);
+            buttons.get(i).setBackground(buttonColor);
             buttons.get(i).setName("b" + counter);
             buttons.get(i).setFont(fn);
             buttons.get(i).addMouseListener(moveTilesListener);
@@ -57,7 +60,7 @@ public class Puzzle extends JFrame{
         buttons.get(15).setText(null);
 
 
-        buttonPanel.setBackground(new Color(0,51,102));
+        buttonPanel.setBackground(buttonColor);
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -65,6 +68,7 @@ public class Puzzle extends JFrame{
         frame.setVisible(true);
 
         correctOrder = new ArrayList<>(buttons);
+        winOrder = new ArrayList<>(buttons);
     }
 
     MouseAdapter shuffleListener = new MouseAdapter() {
