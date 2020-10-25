@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseListener;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -16,13 +17,17 @@ public class MethodClass {
 
     public void shuffle(List<JButton> buttons, JPanel board){
         board.removeAll();
+
         Collections.shuffle(buttons);
         for (JButton button : buttons){
             board.add(button);
         }
+
         board.revalidate();
         board.repaint();
 
     }
+
+
 
 }
