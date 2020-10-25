@@ -24,6 +24,7 @@ public class Puzzle   {
     JButton[][] buttonsCopy;
     boolean solved = false;
 
+
     public void gameDemo(){
         JFrame frame = new JFrame("Puzzle");
         JPanel board = new JPanel();
