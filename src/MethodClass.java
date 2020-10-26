@@ -23,13 +23,37 @@ public class MethodClass {
         }
         list.get(15).setBackground(null);
         list.get(15).setOpaque(true);
-        list.get(15).setText("");
-        //list.get(14).setText("15");
+        list.get(15).setText("15");
+        list.get(14).setText("");
 
         board.revalidate();
         board.repaint();
 
         return list;
+    }
+
+    public void checkWin(List<JButton> buttons){
+       /* int k = 0;
+        for (int i = 0; i < contollList.size(); i++) {
+            if (list.get(i).getText().equals(contollList.get(i).getText())){
+                k++;
+                if (k == contollList.size()){
+                    JOptionPane.showMessageDialog(null,"Grattis du löste pusslet!!!");
+                }
+            }
+        }*/
+        if (buttons.get(0).getText().equals("1")
+                && buttons.get(1).getText().equals("2") && buttons.get(2).getText().equals("3")
+                && buttons.get(3).getText().equals("4") && buttons.get(4).getText().equals("5")
+                && buttons.get(5).getText().equals("6") && buttons.get(6).getText().equals("7")
+                && buttons.get(7).getText().equals("8") && buttons.get(8).getText().equals("9")
+                && buttons.get(9).getText().equals("10") && buttons.get(10).getText().equals("11")
+                && buttons.get(11).getText().equals("12")&& buttons.get(12).getText().equals("13")
+                && buttons.get(13).getText().equals("14")&& buttons.get(14).getText().equals("15")
+                && buttons.get(15).getText().equals("")){
+            JOptionPane.showMessageDialog(null,"You solved the puzzle!!");
+        }
+
     }
 
     public void shuffle(List<JButton> buttons, JPanel board){

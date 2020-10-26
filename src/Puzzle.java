@@ -118,8 +118,8 @@ public class Puzzle extends JFrame{
                         buttons.get(i).setText(value2);
                     }
                 }
-               checkWin(buttons,correctOrder);
             }
+            obj.checkWin(buttons);
         }
     };
 
@@ -130,27 +130,9 @@ public class Puzzle extends JFrame{
                 super.mouseClicked(e);
                 MethodClass obj = new MethodClass();
                 obj.cheat(buttons, board);
-                checkWin(correctOrder,correctOrder);
-
             }
         };
 
-    public void checkWin(List<JButton> list, List<JButton> contollList){
-        int k = 0;
-        for (int i = 0; i < contollList.size(); i++) {
-            if (list.get(i).getText().equals(contollList.get(i).getText())){
-                k++;
-                if (k == contollList.size()){
-                    JOptionPane.showMessageDialog(null,"Grattis du löste pusslet!!!");
-
-                }
-            }
-        }
-
-        /*if(!(k == contollList.size())){
-            System.out.println("Du suger!");
-        }*/
-    }
 
         public static void main(String[] args) {
             Puzzle puzzle = new Puzzle();
