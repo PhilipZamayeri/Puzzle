@@ -5,11 +5,12 @@ import java.util.List;
 /**
  * Created by Robin Martinsson
  * Date:    2020-10-25
- * Time:    13:34
- * Project: Puzzle
+ * Time:    11:54
+ * Project: Inlämningsuppgift03
  * Copyright: MIT
  */
 public class Method {
+
     public void shuffle(JPanel board, List<JButton> buttons){
         board.removeAll();
         Collections.shuffle(buttons);
@@ -19,5 +20,4 @@ public class Method {
         board.revalidate();
         board.repaint();
     }
-}
 }

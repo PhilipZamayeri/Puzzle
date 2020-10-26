@@ -7,258 +7,202 @@ import java.awt.event.MouseEvent;
 import java.util.*;
 import java.util.List;
 
-    /**
-     * Created by Robin Martinsson
-     * Date:    2020-10-22
-     * Time:    10:01
-     * Project: Inlämningsuppgift03
-     * Copyright: MIT
-     */
-    public class Fifteen extends JFrame implements ActionListener {
-        JButton restart;
-        JButton solution;
-        List<JButton> buttons = new ArrayList<>();
-        List<JButton> correctOrder;
-        //boolean solved = false;
-        //List<JButton> correctOrder = new ArrayList<>(buttons);
+/**
+ * Created by Robin Martinsson
+ * Date:    2020-10-22
+ * Time:    10:01
+ * Project: Inlämningsuppgift03
+ * Copyright: MIT
+ */
+public class Fifteen extends JFrame implements ActionListener {
+    JButton restart;
+    JButton solution;
+    List<JButton> buttons = new ArrayList<>();
+    boolean solved = false;
 
-        JFrame frame = new JFrame("Puzzle");
-        JPanel board = new JPanel();
-        JPanel buttonPanel = new JPanel();
-        JPanel panel = new JPanel();
+    JFrame frame = new JFrame("Puzzle");
+    JPanel board = new JPanel();
+    JPanel buttonPanel = new JPanel();
+    JPanel panel = new JPanel();
 
-        public void gameDemo() {
+    public void gameDemo() {
 
-            restart = new JButton("New game");
-            solution = new JButton("Help");
-            restart.addMouseListener(shuffle);
-            //solution.addMouseListener(ma2);
-            solution.addMouseListener(ma2);
+        restart = new JButton("New game");
+        solution = new JButton("Help");
+        restart.addMouseListener(shuffle);
+        solution.addMouseListener(ma2);
 
-            panel.setLayout(new BorderLayout());
-            panel.add(buttonPanel, BorderLayout.NORTH);
-            panel.add(board);
+        panel.setLayout(new BorderLayout());
+        panel.add(buttonPanel, BorderLayout.NORTH);
+        panel.add(board);
 
-            buttonPanel.add(restart);
-            buttonPanel.add(solution);
+        buttonPanel.add(restart);
+        buttonPanel.add(solution);
 
-            board.setLayout(new GridLayout(4, 4));
-            Font fn = new Font("Tahoma", Font.BOLD, 60);
-            int counter = 1;
+        board.setLayout(new GridLayout(4, 4));
+        Font fn = new Font("Tahoma", Font.BOLD, 60);
+        int counter = 1;
 
-            for (int i = 0; i < 16; i++) {
-                buttons.add(new JButton("" + counter++));
-                board.add(buttons.get(i)).setForeground(Color.black);
-                buttons.get(i).setName("b" + counter);
-                buttons.get(i).setFont(fn);
-                buttons.get(i).addActionListener(this);
+        for (int i = 0; i < 16; i++) {
+            buttons.add(new JButton("" + counter++));
+            board.add(buttons.get(i)).setForeground(Color.black);
+            buttons.get(i).setName("b" + counter);
+            buttons.get(i).setFont(fn);
+            buttons.get(i).addActionListener(this);
 
-                //correctOrder.add(new JButton("" + counter++));
-                //correctOrder.get(i).setName("b" + counter);
-                //correctOrder.get(i).setFont(fn);
+        }
+
+        buttons.get(15).setBackground(null);
+        buttons.get(15).setOpaque(true);
+        buttons.get(15).setText("");
+
+        buttonPanel.setBackground(new Color(-153));
+        frame.add(panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setLocation(600, 90);
+        frame.setVisible(true);
+
+        isSolved();
+    }
+
+    MouseAdapter shuffle = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
+            Method obj = new Method();
+            obj.shuffle(board, buttons);
+        }
+    };
+    MouseAdapter ma2 = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            int counter =1;
+            for(int i=0;i<buttons.size();i++) {
+                buttons.get(i).setText("" + counter++);
 
             }
-
             buttons.get(15).setBackground(null);
             buttons.get(15).setOpaque(true);
-            buttons.get(15).setText(null);
-            //List<JButton> correctOrder = new ArrayList<>(buttons);
-
-            buttonPanel.setBackground(new Color(-153));
-            frame.add(panel);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
-            frame.setLocation(600, 90);
-            frame.setVisible(true);
-
-            // System.out.println(buttons.get(14).getText());
-            //List<JButton> correctOrder = new ArrayList<>(buttons);
-            for (var el1 : buttons)
-                System.out.println(el1.getText());
-            correctOrder = new ArrayList<>(buttons);
+            buttons.get(15).setText("");
+            board.revalidate();
+            board.repaint();
         }
+    };
+    public void isSolved() {
 
-        /*public void correctOrder(){
-
-            Font fn = new Font("Tahoma", Font.BOLD, 60);
-            int counter = 1;
-
-            for (int i = 0; i < 16; i++) {
-
-
-                correctOrder.add(new JButton("" + counter++));
-                correctOrder.get(i).setName("b" + counter);
-                correctOrder.get(i).setFont(fn);
-
-            }
-
-            correctOrder.get(15).setBackground(null);
-            correctOrder.get(15).setOpaque(true);
-            correctOrder.get(15).setText(null);
-
-
-            for(var el:correctOrder)
-           System.out.println(el.getText());
-        }
-    */
-        MouseAdapter shuffle = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                Method obj = new Method();
-                obj.shuffle(board, buttons);
-            }
-        };
-        MouseAdapter ma2 = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                board.removeAll();
-                buttons = new ArrayList<>(correctOrder);
-                //correctOrder = ArrayList
-                for(var el:buttons)
-                    board.add(el);
-                board.revalidate();
-                board.repaint();
-            }
-        };
-        MouseAdapter ma3 = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        };
-
-   /* public void isSolved() {
-        //if (buttons[buttons.length - 1] == null) {
-        //if (buttons[3][3] == null) {
-        if (Arrays.equals(buttons, buttonsCopy))
-            //if (Arrays.deepEquals(buttons, buttonsCopy))
+        if (buttons.get(0).getText().equals("1")
+                && buttons.get(1).getText().equals("2") && buttons.get(2).getText().equals("3")
+                && buttons.get(3).getText().equals("4") && buttons.get(4).getText().equals("5")
+                && buttons.get(5).getText().equals("6") && buttons.get(6).getText().equals("7")
+                && buttons.get(7).getText().equals("8") && buttons.get(8).getText().equals("9")
+                && buttons.get(9).getText().equals("10") && buttons.get(10).getText().equals("11")
+                && buttons.get(11).getText().equals("12")&& buttons.get(12).getText().equals("13")
+                && buttons.get(13).getText().equals("14")&& buttons.get(14).getText().equals("15")
+                && buttons.get(15).getText().equals("")){
+            JOptionPane.showMessageDialog(null,"You solved the puzzle!!");
             solved = true;
-            //   }
+        }
+
         else {
             solved = false;
         }
-    }*/
+    }
 
-       /* if(buttons[buttons.length - 1] != null)
-            return false;
-        for (int i = buttons - 1; i >= 0; i--) {
-            if (buttons[i] != i + 1)
-                return false;
+
+    public static void main(String[] args) {
+        Fifteen puzzle = new Fifteen();
+        puzzle.gameDemo();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        for (int i = 0; i < buttons.size(); i++) {
+
+            if (e.getSource() == buttons.get(i)) {
+                String value = buttons.get(i).getText();
+                if (buttons.get(next(i)).getText().equals("")) {
+                    String value2 = buttons.get(next(i)).getText();
+                    buttons.get(next(i)).setText(value);
+                    buttons.get(i).setText(value2);
+                }
+            }
+            if (e.getSource() == buttons.get(i)) {
+                String value = buttons.get(i).getText();
+                if (buttons.get(prev(i)).getText().equals("")) {
+                    String value2 = buttons.get(prev(i)).getText();
+                    buttons.get(prev(i)).setText(value);
+                    buttons.get(i).setText(value2);
+                }
+            }
+            if (e.getSource() == buttons.get(i)) {
+                String value = buttons.get(i).getText();
+                if (buttons.get(above(i)).getText().equals("")) {
+                    String value2 = buttons.get(above(i)).getText();
+                    buttons.get(above(i)).setText(value);
+                    buttons.get(i).setText(value2);
+                }
+            }
+            if (e.getSource() == buttons.get(i)) {
+                String value = buttons.get(i).getText();
+                if (buttons.get(below(i)).getText().equals("")) {
+                    String value2 = buttons.get(below(i)).getText();
+                    buttons.get(below(i)).setText(value);
+                    buttons.get(i).setText(value2);
+                }
+            }
+
         }
-        return true;
+       /* if(solved){
+            JOptionPane.showMessageDialog(null,"You solved the puzzle!!");
+        }
 
         */
-        //}
-        //public void print(){
-        //System.out.println(Arrays.toString(buttons));
-        //System.out.println(Arrays.toString(buttonsCopy));
-        /*for (var el : buttons)
-            System.out.println(el);
 
-        for (var el2 : buttonsCopy)
-            System.out.println(el2);*/
-        //}
-
-
-        public static void main(String[] args) {
-            Fifteen puzzle = new Fifteen();
-            puzzle.gameDemo();
-            //puzzle.correctOrder();
-            //puzzle.gameSolved();
-
-       /* if (puzzle.gameSolved()) {
-            JOptionPane.showMessageDialog(null,"You solved the puzzle!!");
-        }*/
-
-            //puzzle.print();
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            for (int i = 0; i < buttons.size(); i++) {
-
-                if (e.getSource() == buttons.get(i)) {
-                    String value = buttons.get(i).getText();
-                    if (buttons.get(next(i)).getText() == null) {
-                        String value2 = buttons.get(next(i)).getText();
-                        buttons.get(next(i)).setText(value);
-                        buttons.get(i).setText(value2);
-                    }
-                }
-                if (e.getSource() == buttons.get(i)) {
-                    String value = buttons.get(i).getText();
-                    if (buttons.get(prev(i)).getText() == null) {
-                        String value2 = buttons.get(prev(i)).getText();
-                        buttons.get(prev(i)).setText(value);
-                        buttons.get(i).setText(value2);
-                    }
-                }
-                if (e.getSource() == buttons.get(i)) {
-                    String value = buttons.get(i).getText();
-                    if (buttons.get(above(i)).getText() == null) {
-                        String value2 = buttons.get(above(i)).getText();
-                        buttons.get(above(i)).setText(value);
-                        buttons.get(i).setText(value2);
-                    }
-                }
-                if (e.getSource() == buttons.get(i)) {
-                    String value = buttons.get(i).getText();
-                    if (buttons.get(below(i)).getText() == null) {
-                        String value2 = buttons.get(below(i)).getText();
-                        buttons.get(below(i)).setText(value);
-                        buttons.get(i).setText(value2);
-                    }
-                }
-            /*if (gameSolved()) {
-                JOptionPane.showMessageDialog(null,"You solved the puzzle!!");
-                System.exit(0);
-            }*/
-            }
-        }
-
-        public int next(int i) {
-            if (i <= 14 && i >= 0) {
-                return i + 1;
-            } else {
-                //return i = buttons.size()-1;
-                return i = 15;
-            }
-        }
-
-        public int prev(int i) {
-            if (i >= 1 && i <= 15) {
-                return i - 1;
-            } else {
-                return i = 0;
-            }
-        }
-
-        public int above(int i) {
-            if (i >= 4 && i <= 15) {
-                return i - 4;
-            } else {
-                return i;
-            }
-        }
-
-        public int below(int i) {
-            if (i >= 0 && i <= 11) {
-                return i + 4;
-            } else {
-                return i;
-            }
-        }
-
-        public boolean gameSolved() {
-            if (buttons.equals(correctOrder)) {
-                System.out.println("Sant");
-                return true;
-            } else {
-                System.out.println("Falskt");
-                return false;
-            }
+        if (buttons.get(0).getText().equals("1")
+                && buttons.get(1).getText().equals("2") && buttons.get(2).getText().equals("3")
+                && buttons.get(3).getText().equals("4") && buttons.get(4).getText().equals("5")
+                && buttons.get(5).getText().equals("6") && buttons.get(6).getText().equals("7")
+                && buttons.get(7).getText().equals("8") && buttons.get(8).getText().equals("9")
+                && buttons.get(9).getText().equals("10") && buttons.get(10).getText().equals("11")
+                && buttons.get(11).getText().equals("12") && buttons.get(12).getText().equals("13")
+                && buttons.get(13).getText().equals("14") && buttons.get(14).getText().equals("15")
+                && buttons.get(15).getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "You solved the puzzle!!");
         }
     }
+
+    public int next(int i) {
+        if (i <= 14 && i >= 0) {
+            return i + 1;
+        } else {
+            return i = 15;
+        }
+    }
+
+    public int prev(int i) {
+        if (i >= 1 && i <= 15) {
+            return i - 1;
+        } else {
+            return i = 0;
+        }
+    }
+
+    public int above(int i) {
+        if (i >= 4 && i <= 15) {
+            return i - 4;
+        } else {
+            return i;
+        }
+    }
+
+    public int below(int i) {
+        if (i >= 0 && i <= 11) {
+            return i + 4;
+        } else {
+            return i;
+        }
+    }
+
 }
