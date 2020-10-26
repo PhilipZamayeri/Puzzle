@@ -27,7 +27,41 @@ public class MethodClass {
         board.repaint();
 
     }
+    public int next(int i) {
+        if (i <= 14 && i >= 0) {
+            return i + 1;
+        } else {
+            return i = 15;
+        }
+    }
+
+    public int prev(int i) {
+        if (i >= 1 && i <= 15) {
+            return i - 1;
+        } else {
+            return i = 0;
+        }
+    }
+
+    public int above(int i) {
+        if (i >= 4 && i <= 15) {
+            return i - 4;
+        } else {
+            return i;
+        }
+    }
+
+    public int below(int i) {
+        if (i >= 0 && i <= 11) {
+            return i + 4;
+        } else {
+            return i;
+        }
+    }
 
 
+    public void moveTiles(JButton buttons, MouseListener e){
+
+    }
 
 }

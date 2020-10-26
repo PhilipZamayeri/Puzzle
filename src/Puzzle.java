@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -82,37 +80,38 @@ public class Puzzle extends JFrame{
     MouseAdapter moveTilesListener = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
+            MethodClass obj = new MethodClass();
             for (int i = 0; i < buttons.size(); i++) {
 
                 if (e.getSource() == buttons.get(i)) {
                     String value = buttons.get(i).getText();
-                    if (buttons.get(next(i)).getText() == null) {
-                        String value2 = buttons.get(next(i)).getText();
-                        buttons.get(next(i)).setText(value);
+                    if (buttons.get(obj.next(i)).getText() == null) {
+                        String value2 = buttons.get(obj.next(i)).getText();
+                        buttons.get(obj.next(i)).setText(value);
                         buttons.get(i).setText(value2);
                     }
                 }
                 if (e.getSource() == buttons.get(i)) {
                     String value = buttons.get(i).getText();
-                    if (buttons.get(prev(i)).getText() == null) {
-                        String value2 = buttons.get(prev(i)).getText();
-                        buttons.get(prev(i)).setText(value);
+                    if (buttons.get(obj.prev(i)).getText() == null) {
+                        String value2 = buttons.get(obj.prev(i)).getText();
+                        buttons.get(obj.prev(i)).setText(value);
                         buttons.get(i).setText(value2);
                     }
                 }
                 if (e.getSource() == buttons.get(i)) {
                     String value = buttons.get(i).getText();
-                    if (buttons.get(above(i)).getText() == null) {
-                        String value2 = buttons.get(above(i)).getText();
-                        buttons.get(above(i)).setText(value);
+                    if (buttons.get(obj.above(i)).getText() == null) {
+                        String value2 = buttons.get(obj.above(i)).getText();
+                        buttons.get(obj.above(i)).setText(value);
                         buttons.get(i).setText(value2);
                     }
                 }
                 if (e.getSource() == buttons.get(i)) {
                     String value = buttons.get(i).getText();
-                    if (buttons.get(below(i)).getText() == null) {
-                        String value2 = buttons.get(below(i)).getText();
-                        buttons.get(below(i)).setText(value);
+                    if (buttons.get(obj.below(i)).getText() == null) {
+                        String value2 = buttons.get(obj.below(i)).getText();
+                        buttons.get(obj.below(i)).setText(value);
                         buttons.get(i).setText(value2);
                     }
                 }
@@ -122,7 +121,7 @@ public class Puzzle extends JFrame{
     }
 
         ;
-        MouseAdapter ma3 = new MouseAdapter() {
+        MouseAdapter cheatListener = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -139,37 +138,6 @@ public class Puzzle extends JFrame{
 
         }
 
-        public int next(int i) {
-            if (i <= 14 && i >= 0) {
-                return i + 1;
-            } else {
-                return i = 15;
-            }
-        }
-
-        public int prev(int i) {
-            if (i >= 1 && i <= 15) {
-                return i - 1;
-            } else {
-                return i = 0;
-            }
-        }
-
-        public int above(int i) {
-            if (i >= 4 && i <= 15) {
-                return i - 4;
-            } else {
-                return i;
-            }
-        }
-
-        public int below(int i) {
-            if (i >= 0 && i <= 11) {
-                return i + 4;
-            } else {
-                return i;
-            }
-        }
 
         public boolean gameSolved() {
             if (buttons.equals(correctOrder)) {
