@@ -18,7 +18,6 @@ public class Fifteen extends JFrame implements ActionListener {
     JButton restart;
     JButton solution;
     List<JButton> buttons = new ArrayList<>();
-    boolean solved = false;
 
     JFrame frame = new JFrame("Puzzle");
     JPanel board = new JPanel();
@@ -63,7 +62,7 @@ public class Fifteen extends JFrame implements ActionListener {
         frame.setLocation(600, 90);
         frame.setVisible(true);
 
-        isSolved();
+        //isSolved();
     }
 
     MouseAdapter shuffle = new MouseAdapter() {
@@ -77,8 +76,8 @@ public class Fifteen extends JFrame implements ActionListener {
     MouseAdapter ma2 = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-            int counter =1;
-            for(int i=0;i<buttons.size();i++) {
+            int counter = 1;
+            for (int i = 0; i < buttons.size(); i++) {
                 buttons.get(i).setText("" + counter++);
 
             }
@@ -89,23 +88,21 @@ public class Fifteen extends JFrame implements ActionListener {
             board.repaint();
         }
     };
-    public void isSolved() {
 
-        if (buttons.get(0).getText().equals("1")
-                && buttons.get(1).getText().equals("2") && buttons.get(2).getText().equals("3")
-                && buttons.get(3).getText().equals("4") && buttons.get(4).getText().equals("5")
-                && buttons.get(5).getText().equals("6") && buttons.get(6).getText().equals("7")
-                && buttons.get(7).getText().equals("8") && buttons.get(8).getText().equals("9")
-                && buttons.get(9).getText().equals("10") && buttons.get(10).getText().equals("11")
-                && buttons.get(11).getText().equals("12")&& buttons.get(12).getText().equals("13")
-                && buttons.get(13).getText().equals("14")&& buttons.get(14).getText().equals("15")
-                && buttons.get(15).getText().equals("")){
-            JOptionPane.showMessageDialog(null,"You solved the puzzle!!");
-            solved = true;
-        }
+    public boolean isSolved() {
 
-        else {
-            solved = false;
+        if (buttons.get(0).getText().equals("1") && buttons.get(1).getText().equals("2")
+                && buttons.get(2).getText().equals("3") && buttons.get(3).getText().equals("4")
+                && buttons.get(4).getText().equals("5") && buttons.get(5).getText().equals("6")
+                && buttons.get(6).getText().equals("7") && buttons.get(7).getText().equals("8")
+                && buttons.get(8).getText().equals("9") && buttons.get(9).getText().equals("10")
+                && buttons.get(10).getText().equals("11") && buttons.get(11).getText().equals("12")
+                && buttons.get(12).getText().equals("13") && buttons.get(13).getText().equals("14")
+                && buttons.get(14).getText().equals("15") && buttons.get(15).getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "You solved the puzzle!!");
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -154,23 +151,7 @@ public class Fifteen extends JFrame implements ActionListener {
             }
 
         }
-       /* if(solved){
-            JOptionPane.showMessageDialog(null,"You solved the puzzle!!");
-        }
-
-        */
-
-        if (buttons.get(0).getText().equals("1")
-                && buttons.get(1).getText().equals("2") && buttons.get(2).getText().equals("3")
-                && buttons.get(3).getText().equals("4") && buttons.get(4).getText().equals("5")
-                && buttons.get(5).getText().equals("6") && buttons.get(6).getText().equals("7")
-                && buttons.get(7).getText().equals("8") && buttons.get(8).getText().equals("9")
-                && buttons.get(9).getText().equals("10") && buttons.get(10).getText().equals("11")
-                && buttons.get(11).getText().equals("12") && buttons.get(12).getText().equals("13")
-                && buttons.get(13).getText().equals("14") && buttons.get(14).getText().equals("15")
-                && buttons.get(15).getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "You solved the puzzle!!");
-        }
+        isSolved();
     }
 
     public int next(int i) {
