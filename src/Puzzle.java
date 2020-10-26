@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,7 +19,6 @@ public class Puzzle extends JFrame{
     JButton cheat;
     List<JButton> buttons = new ArrayList<>();
     List<JButton> correctOrder;
-    List<JButton> cheatList;
 
     JFrame frame = new JFrame("Puzzle");
     JPanel board = new JPanel();
@@ -26,6 +26,7 @@ public class Puzzle extends JFrame{
     JPanel panel  = new JPanel();
 
     public void gameDemo(){
+        MethodClass obj = new MethodClass();
 
         newGame = new JButton("New game");
         cheat = new JButton("Cheat");
@@ -48,7 +49,7 @@ public class Puzzle extends JFrame{
             buttons.add(new JButton("" + counter++));
             board.add(buttons.get(i)).setForeground(Color.BLACK);
             buttons.get(i).setBackground(buttonColor);
-            buttons.get(i).setName("b" + counter);
+            buttons.get(i).setName("b" + (counter-1));
             buttons.get(i).setFont(fn);
             buttons.get(i).addMouseListener(moveTilesListener);
 
@@ -56,7 +57,7 @@ public class Puzzle extends JFrame{
 
         buttons.get(15).setBackground(null);
         buttons.get(15).setOpaque(true);
-        buttons.get(15).setText(null);
+        buttons.get(15).setText("");
 
 
         buttonPanel.setBackground(buttonColor);
@@ -67,7 +68,8 @@ public class Puzzle extends JFrame{
         frame.setVisible(true);
 
         correctOrder = new ArrayList<>(buttons);
-        cheatList = new ArrayList<>(buttons);
+        obj.shuffle(buttons,board);
+
     }
 
     MouseAdapter shuffleListener = new MouseAdapter() {
@@ -86,7 +88,7 @@ public class Puzzle extends JFrame{
 
                 if (e.getSource() == buttons.get(i)) {
                     String value = buttons.get(i).getText();
-                    if (buttons.get(obj.next(i)).getText() == null) {
+                    if (buttons.get(obj.next(i)).getText() == "") {
                         String value2 = buttons.get(obj.next(i)).getText();
                         buttons.get(obj.next(i)).setText(value);
                         buttons.get(i).setText(value2);
@@ -94,7 +96,7 @@ public class Puzzle extends JFrame{
                 }
                 if (e.getSource() == buttons.get(i)) {
                     String value = buttons.get(i).getText();
-                    if (buttons.get(obj.prev(i)).getText() == null) {
+                    if (buttons.get(obj.prev(i)).getText() == "") {
                         String value2 = buttons.get(obj.prev(i)).getText();
                         buttons.get(obj.prev(i)).setText(value);
                         buttons.get(i).setText(value2);
@@ -102,7 +104,7 @@ public class Puzzle extends JFrame{
                 }
                 if (e.getSource() == buttons.get(i)) {
                     String value = buttons.get(i).getText();
-                    if (buttons.get(obj.above(i)).getText() == null) {
+                    if (buttons.get(obj.above(i)).getText() == "") {
                         String value2 = buttons.get(obj.above(i)).getText();
                         buttons.get(obj.above(i)).setText(value);
                         buttons.get(i).setText(value2);
@@ -110,13 +112,13 @@ public class Puzzle extends JFrame{
                 }
                 if (e.getSource() == buttons.get(i)) {
                     String value = buttons.get(i).getText();
-                    if (buttons.get(obj.below(i)).getText() == null) {
+                    if (buttons.get(obj.below(i)).getText() == "") {
                         String value2 = buttons.get(obj.below(i)).getText();
                         buttons.get(obj.below(i)).setText(value);
                         buttons.get(i).setText(value2);
                     }
                 }
-
+               checkWin(buttons,correctOrder);
             }
         }
     };
@@ -128,27 +130,32 @@ public class Puzzle extends JFrame{
                 super.mouseClicked(e);
                 MethodClass obj = new MethodClass();
                 obj.cheat(buttons, board);
+                checkWin(correctOrder,correctOrder);
+
             }
         };
 
+    public void checkWin(List<JButton> list, List<JButton> contollList){
+        int k = 0;
+        for (int i = 0; i < contollList.size(); i++) {
+            if (list.get(i).getText().equals(contollList.get(i).getText())){
+                k++;
+                if (k == contollList.size()){
+                    JOptionPane.showMessageDialog(null,"Grattis du löste pusslet!!!");
 
+                }
+            }
+        }
+
+        /*if(!(k == contollList.size())){
+            System.out.println("Du suger!");
+        }*/
+    }
 
         public static void main(String[] args) {
             Puzzle puzzle = new Puzzle();
             puzzle.gameDemo();
-            //puzzle.correctOrder();
-            //puzzle.gameSolved();
 
         }
 
-
-        public boolean gameSolved() {
-            if (buttons.equals(correctOrder)) {
-                System.out.println("Sant");
-                return true;
-            } else {
-                System.out.println("Falskt");
-                return false;
-            }
-        }
     }

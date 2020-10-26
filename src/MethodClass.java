@@ -1,10 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Philip Zamayeri
@@ -15,19 +13,23 @@ import java.util.Random;
  */
 public class MethodClass {
 
-    public void cheat(List<JButton> buttons, JPanel board){
+    public List<JButton> cheat(List<JButton> list, JPanel board){
+
 
         int counter =1;
-        for(int i=0;i<buttons.size();i++) {
-            buttons.get(i).setText("" + counter++);
+        for(int i=0;i<list.size();i++) {
+            list.get(i).setText("" + counter++);
 
         }
-        buttons.get(15).setBackground(null);
-        buttons.get(15).setOpaque(true);
-        buttons.get(15).setText("15");
-        buttons.get(14).setText(null);
+        list.get(15).setBackground(null);
+        list.get(15).setOpaque(true);
+        list.get(15).setText("");
+        //list.get(14).setText("15");
+
         board.revalidate();
         board.repaint();
+
+        return list;
     }
 
     public void shuffle(List<JButton> buttons, JPanel board){
@@ -42,6 +44,8 @@ public class MethodClass {
         board.repaint();
 
     }
+
+
     public int next(int i) {
         if (i <= 14 && i >= 0) {
             return i + 1;
@@ -75,8 +79,5 @@ public class MethodClass {
     }
 
 
-    public void moveTiles(JButton buttons, MouseListener e){
-
-    }
 
 }
