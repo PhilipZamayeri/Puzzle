@@ -18,7 +18,7 @@ public class Puzzle extends JFrame{
     JButton cheat;
     List<JButton> buttons = new ArrayList<>();
     List<JButton> correctOrder;
-    List<JButton> winOrder;
+    List<JButton> cheatList;
 
     JFrame frame = new JFrame("Puzzle");
     JPanel board = new JPanel();
@@ -30,6 +30,7 @@ public class Puzzle extends JFrame{
         newGame = new JButton("New game");
         cheat = new JButton("Cheat");
         newGame.addMouseListener(shuffleListener);
+        cheat.addMouseListener(cheatListener);
 
 
         panel.setLayout(new BorderLayout());
@@ -66,7 +67,7 @@ public class Puzzle extends JFrame{
         frame.setVisible(true);
 
         correctOrder = new ArrayList<>(buttons);
-        winOrder = new ArrayList<>(buttons);
+        cheatList = new ArrayList<>(buttons);
     }
 
     MouseAdapter shuffleListener = new MouseAdapter() {
@@ -118,13 +119,15 @@ public class Puzzle extends JFrame{
 
             }
         }
-    }
+    };
 
-        ;
+
         MouseAdapter cheatListener = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                MethodClass obj = new MethodClass();
+                obj.cheat(buttons, board);
             }
         };
 

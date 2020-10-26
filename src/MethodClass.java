@@ -15,6 +15,21 @@ import java.util.Random;
  */
 public class MethodClass {
 
+    public void cheat(List<JButton> buttons, JPanel board){
+
+        int counter =1;
+        for(int i=0;i<buttons.size();i++) {
+            buttons.get(i).setText("" + counter++);
+
+        }
+        buttons.get(15).setBackground(null);
+        buttons.get(15).setOpaque(true);
+        buttons.get(15).setText("15");
+        buttons.get(14).setText(null);
+        board.revalidate();
+        board.repaint();
+    }
+
     public void shuffle(List<JButton> buttons, JPanel board){
         board.removeAll();
 
