@@ -81,9 +81,10 @@ public class Fifteen extends JFrame implements ActionListener {
                 buttons.get(i).setText("" + counter++);
 
             }
-            buttons.get(15).setBackground(null);
-            buttons.get(15).setOpaque(true);
-            buttons.get(15).setText("");
+            buttons.get(14).setBackground(null);
+            buttons.get(14).setOpaque(true);
+            buttons.get(14).setText("");
+            buttons.get(15).setText("15");
             board.revalidate();
             board.repaint();
         }
