@@ -45,6 +45,8 @@ public class Fifteen extends JFrame implements ActionListener {
         for (int i = 0; i < 16; i++) {
             buttons.add(new JButton("" + counter++));
             board.add(buttons.get(i)).setForeground(Color.black);
+            //buttons.get(i).setBackground(Color.black);
+            //buttons.get(i).setOpaque(true);
             buttons.get(i).setName("b" + counter);
             buttons.get(i).setFont(fn);
             buttons.get(i).addActionListener(this);
@@ -100,11 +102,33 @@ public class Fifteen extends JFrame implements ActionListener {
                 && buttons.get(10).getText().equals("11") && buttons.get(11).getText().equals("12")
                 && buttons.get(12).getText().equals("13") && buttons.get(13).getText().equals("14")
                 && buttons.get(14).getText().equals("15") && buttons.get(15).getText().equals("")) {
+           // JOptionPane.showMessageDialog(null, "You solved the puzzle!!");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isMovable(){
+        if (buttons.get(0).getText().equals("1") && buttons.get(1).getText().equals("2")
+                && buttons.get(2).getText().equals("3") && buttons.get(3).getText().equals("4")
+                && buttons.get(4).getText().equals("5") && buttons.get(5).getText().equals("6")
+                && buttons.get(6).getText().equals("7") && buttons.get(7).getText().equals("8")
+                && buttons.get(8).getText().equals("9") && buttons.get(9).getText().equals("10")
+                && buttons.get(10).getText().equals("11") && buttons.get(11).getText().equals("12")
+                && buttons.get(12).getText().equals("13") && buttons.get(13).getText().equals("14")
+                && buttons.get(14).getText().equals("15") && buttons.get(15).getText().equals("")) {
             JOptionPane.showMessageDialog(null, "You solved the puzzle!!");
             return true;
         } else {
             return false;
         }
+    }
+
+    public boolean isSolvable(){
+
+
+        return true;
     }
 
 
@@ -152,7 +176,18 @@ public class Fifteen extends JFrame implements ActionListener {
             }
 
         }
-        isSolved();
+       /* int i =Integer.parseInt(e.getActionCommand());
+        if(isSolved()) {
+            if(!buttons.get(next(i)).getText().equals("") && !buttons.get(prev(i)).getText().equals("")
+                    && !buttons.get(above(i)).getText().equals("") && !buttons.get(below(i)).getText().equals("")){
+                System.out.println("Hej");
+            }
+            else if (buttons.get(below(11)).getText().equals(""))
+                JOptionPane.showMessageDialog(null, "You solved the puzzle!!");
+        }*/
+            if (isSolved()){
+                JOptionPane.showMessageDialog(null, "You solved the puzzle!!");
+            }
     }
 
     public int next(int i) {
