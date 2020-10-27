@@ -109,29 +109,6 @@ public class Fifteen extends JFrame implements ActionListener {
         }
     }
 
-    public boolean isMovable(){
-        if (buttons.get(0).getText().equals("1") && buttons.get(1).getText().equals("2")
-                && buttons.get(2).getText().equals("3") && buttons.get(3).getText().equals("4")
-                && buttons.get(4).getText().equals("5") && buttons.get(5).getText().equals("6")
-                && buttons.get(6).getText().equals("7") && buttons.get(7).getText().equals("8")
-                && buttons.get(8).getText().equals("9") && buttons.get(9).getText().equals("10")
-                && buttons.get(10).getText().equals("11") && buttons.get(11).getText().equals("12")
-                && buttons.get(12).getText().equals("13") && buttons.get(13).getText().equals("14")
-                && buttons.get(14).getText().equals("15") && buttons.get(15).getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "You solved the puzzle!!");
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isSolvable(){
-
-
-        return true;
-    }
-
-
     public static void main(String[] args) {
         Fifteen puzzle = new Fifteen();
         puzzle.gameDemo();
