@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.MouseEvent;
 import java.util.*;
 import java.util.List;
 
@@ -86,4 +87,44 @@ public class MethodClass {
             return i;
         }
     }
+
+    public void moveTiles(List<JButton> buttons, List<JButton> correctOrder, MouseEvent e){
+        for (int i = 0; i < buttons.size(); i++) {
+
+            if (e.getSource() == buttons.get(i)) {
+                String value = buttons.get(i).getText();
+                if (buttons.get(next(i)).getText() == "") {
+                    String value2 = buttons.get(next(i)).getText();
+                    buttons.get(next(i)).setText(value);
+                    buttons.get(i).setText(value2);
+                }
+            }
+            if (e.getSource() == buttons.get(i)) {
+                String value = buttons.get(i).getText();
+                if (buttons.get(prev(i)).getText() == "") {
+                    String value2 = buttons.get(prev(i)).getText();
+                    buttons.get(prev(i)).setText(value);
+                    buttons.get(i).setText(value2);
+                }
+            }
+            if (e.getSource() == buttons.get(i)) {
+                String value = buttons.get(i).getText();
+                if (buttons.get(above(i)).getText() == "") {
+                    String value2 = buttons.get(above(i)).getText();
+                    buttons.get(above(i)).setText(value);
+                    buttons.get(i).setText(value2);
+                }
+            }
+            if (e.getSource() == buttons.get(i)) {
+                String value = buttons.get(i).getText();
+                if (buttons.get(below(i)).getText() == "") {
+                    String value2 = buttons.get(below(i)).getText();
+                    buttons.get(below(i)).setText(value);
+                    buttons.get(i).setText(value2);
+                }
+            }
+        }
+        isSolved(buttons,correctOrder);
+    }
+
 }
