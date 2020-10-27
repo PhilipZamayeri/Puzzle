@@ -15,7 +15,6 @@ public class MethodClass {
 
     public List<JButton> cheat(List<JButton> list, JPanel board){
 
-
         int counter =1;
         for(int i=0;i<list.size();i++) {
             list.get(i).setText("" + counter++);
@@ -32,28 +31,17 @@ public class MethodClass {
         return list;
     }
 
-    public void checkWin(List<JButton> buttons){
-       /* int k = 0;
-        for (int i = 0; i < contollList.size(); i++) {
-            if (list.get(i).getText().equals(contollList.get(i).getText())){
+    public void isSolved(List<JButton> buttons, List<JButton> correctOrder){
+        int k = 0;
+        int counter = 1;
+        for (int i = 0; i < correctOrder.size(); i++) {
+            if (buttons.get(i).getText().equals("" + counter++)){
                 k++;
-                if (k == contollList.size()){
-                    JOptionPane.showMessageDialog(null,"Grattis du löste pusslet!!!");
-                }
             }
-        }*/
-        if (buttons.get(0).getText().equals("1")
-                && buttons.get(1).getText().equals("2") && buttons.get(2).getText().equals("3")
-                && buttons.get(3).getText().equals("4") && buttons.get(4).getText().equals("5")
-                && buttons.get(5).getText().equals("6") && buttons.get(6).getText().equals("7")
-                && buttons.get(7).getText().equals("8") && buttons.get(8).getText().equals("9")
-                && buttons.get(9).getText().equals("10") && buttons.get(10).getText().equals("11")
-                && buttons.get(11).getText().equals("12")&& buttons.get(12).getText().equals("13")
-                && buttons.get(13).getText().equals("14")&& buttons.get(14).getText().equals("15")
-                && buttons.get(15).getText().equals("")){
-            JOptionPane.showMessageDialog(null,"You solved the puzzle!!");
         }
-
+        if (k == (correctOrder.size()-1)){
+            JOptionPane.showMessageDialog(null,"Grattis du löste pusslet!!!");
+        }
     }
 
     public void shuffle(List<JButton> buttons, JPanel board){

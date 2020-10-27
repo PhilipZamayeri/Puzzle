@@ -80,6 +80,7 @@ public class Puzzle extends JFrame{
             obj.shuffle(buttons, board);
         }
     };
+
     MouseAdapter moveTilesListener = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -119,7 +120,7 @@ public class Puzzle extends JFrame{
                     }
                 }
             }
-            obj.checkWin(buttons);
+            obj.isSolved(buttons,correctOrder);
         }
     };
 
