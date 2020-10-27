@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseListener;
 import java.util.*;
 import java.util.List;
 
@@ -54,7 +52,6 @@ public class MethodClass {
 
         board.revalidate();
         board.repaint();
-
     }
 
 
@@ -89,7 +86,4 @@ public class MethodClass {
             return i;
         }
     }
-
-
-
 }
