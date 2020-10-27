@@ -84,45 +84,9 @@ public class Puzzle extends JFrame{
         @Override
         public void mouseClicked(MouseEvent e) {
             MethodClass obj = new MethodClass();
-            for (int i = 0; i < buttons.size(); i++) {
-
-                if (e.getSource() == buttons.get(i)) {
-                    String value = buttons.get(i).getText();
-                    if (buttons.get(obj.next(i)).getText() == "") {
-                        String value2 = buttons.get(obj.next(i)).getText();
-                        buttons.get(obj.next(i)).setText(value);
-                        buttons.get(i).setText(value2);
-                    }
-                }
-                if (e.getSource() == buttons.get(i)) {
-                    String value = buttons.get(i).getText();
-                    if (buttons.get(obj.prev(i)).getText() == "") {
-                        String value2 = buttons.get(obj.prev(i)).getText();
-                        buttons.get(obj.prev(i)).setText(value);
-                        buttons.get(i).setText(value2);
-                    }
-                }
-                if (e.getSource() == buttons.get(i)) {
-                    String value = buttons.get(i).getText();
-                    if (buttons.get(obj.above(i)).getText() == "") {
-                        String value2 = buttons.get(obj.above(i)).getText();
-                        buttons.get(obj.above(i)).setText(value);
-                        buttons.get(i).setText(value2);
-                    }
-                }
-                if (e.getSource() == buttons.get(i)) {
-                    String value = buttons.get(i).getText();
-                    if (buttons.get(obj.below(i)).getText() == "") {
-                        String value2 = buttons.get(obj.below(i)).getText();
-                        buttons.get(obj.below(i)).setText(value);
-                        buttons.get(i).setText(value2);
-                    }
-                }
-            }
-            obj.isSolved(buttons,correctOrder);
+            obj.moveTiles(buttons,correctOrder,e);
         }
     };
-
 
         MouseAdapter cheatListener = new MouseAdapter() {
             @Override
